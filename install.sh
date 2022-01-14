@@ -5,22 +5,33 @@ sudo apt-get install -y libxcb-shape0-dev libxcb-keysyms1-dev libpango1.0-dev li
 sudo apt-get install -y libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev npm
 
 
-# Download basic Fonts 
+# Fonts installation 
+mkdir -p ~/.local/share/fonts/
+
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Iosevka.zip
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
 
+unzip Iosevka.zip -d ~/.local/share/fonts/
+unzip RobotoMono.zip -d ~/.local/share/fonts/
 
-cargo install --bins alacritty
-cp /root/.cargo/bin/alacritty  /usr/local/bin
+fc-cache -fv
 
+# Alacritty and themes installation done
+sudo cargo install --bins alacritty
+sudo cp /root/.cargo/bin/alacritty  /usr/local/bin
+sudo npm install alacritty-themes
+
+# I3 gaps done
 git clone https://www.github.com/Airblader/i3 i3-gaps
 cd i3-gaps && mkdir -p build && cd build && meson ..
 ninja
 sudo ninja install
 cd ../..
 
+# use of pywal python3 -m pywal -i <wallpaper.jpg>
 pip3 install pywal
 
+# Update files
 mkdir -p ~/.config/i3
 mkdir -p ~/.config/compton
 mkdir -p ~/.config/rofi
@@ -33,7 +44,7 @@ cp .config/rofi/config ~/.config/rofi/config
 cp .fehbg ~/.fehbg
 cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
 
-echo "Done! Grab some wallpaper and run pywal -i filename to set your color scheme. To have the wallpaper set on every boot edit ~.fehbg"
+echo "Done! Grab some wallpaper and run python3 -m pywal -i <wallpaper.jpg> to set your color scheme. To have the wallpaper set on every boot edit ~.fehbg"
 echo "After reboot: Select i3 on login, run lxappearance and select arc-dark"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
