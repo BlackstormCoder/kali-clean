@@ -19,7 +19,7 @@ fc-cache -fv
 # Alacritty and themes installation done
 sudo cargo install --bins alacritty
 sudo cp /root/.cargo/bin/alacritty  /usr/local/bin
-sudo npm install alacritty-themes
+sudo npm i -g alacritty-themes
 
 # I3 gaps done
 git clone https://www.github.com/Airblader/i3 i3-gaps
@@ -43,6 +43,7 @@ cp .config/compton/compton.conf ~/.config/compton/compton.conf
 cp .config/rofi/config ~/.config/rofi/config
 cp .fehbg ~/.fehbg
 cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
+cp -r .wallpaper ~/.wallpaper 
 
 echo "Done! Grab some wallpaper and run python3 -m pywal -i <wallpaper.jpg> to set your color scheme. To have the wallpaper set on every boot edit ~.fehbg"
 echo "After reboot: Select i3 on login, run lxappearance and select arc-dark"
